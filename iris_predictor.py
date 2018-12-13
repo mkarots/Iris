@@ -67,7 +67,14 @@ class KNN(object):
         square = np.dot(x1 - x2, (x1 - x2).T)
         return np.square(square)
 
-    def minkowski_dist(self, x1, x2)
+    def minkowski_dist(self, x1, x2, d = 4):
+
+        x1 = np.array(x1)
+        x2 = np.array(x2)
+        difference = x1 - x2
+        powered = np.power(difference, d)
+        summed = np.sum(powered, axis=1)
+        return  np.power(summed, 1.0/d)
 
     def predict(self, test_instance):
         """
