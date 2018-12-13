@@ -73,7 +73,7 @@ class KNN(object):
         x2 = np.array(x2)
         difference = x1 - x2
         powered = np.power(difference, d)
-        summed = np.sum(powered, axis=1)
+        summed = np.sum(powered)
         return  np.power(summed, 1.0/d)
 
     def predict(self, test_instance):
@@ -84,7 +84,7 @@ class KNN(object):
         # Calculate distances between instance and training data
         distances = {}
         for x in range(len(self.x_train)):
-            distance = self.eucl_dist(test_instance, self.x_train.iloc[x])
+            distance = self.minkowski_dist(test_instance, self.x_train.iloc[x])
             distances[x] = distance
         # Sort the distances
         sorted_d = sorted(distances.items(), key=operator.itemgetter(1))
